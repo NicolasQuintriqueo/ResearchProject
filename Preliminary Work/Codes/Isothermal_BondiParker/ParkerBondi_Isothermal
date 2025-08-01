@@ -1,0 +1,74 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import lambertw
+from scipy.optimize import newton
+from matplotlib.ticker import ScalarFormatter
+
+a = 1.0
+r_s = 1.0
+
+# analytic Lambert W
+def mach(r, branch):
+    C = (r_s / r)**2 * np.exp(-2.0 * r_s / r + 1.5)
+    v = a * np.sqrt(-lambertw(-C**2, k=branch).real)
+    return v / a 
+
+# numeric NewtonRamson
+def f(v, r):
+    return v * np.exp(-0.5 * (v / a) ** 2) - a * (r_s / r) ** 2 * np.exp(-2 * r_s / r + 1.5)
+
+def solve_branch(r_vals, guess):
+    sol = []
+    vGuess = guess
+    for r in r_vals:
+        vGuess = newton(f, vGuess, args=(r,), tol=1e-12, maxiter=100)
+        sol.append(vGuess)
+    return np.array(sol) / a 
+
+#(outflow) PArker
+rParkerInner = np.linspace(0.05, 1.0, 60, endpoint=False)
+mParkerInnerNum = solve_branch(rParkerInner[::-1], 0.1*a)[::-1]
+rParkerOuter = np.linspace(1.0, 3.0, 60)
+mParkerOuterNum = solve_branch(rParkerOuter, 1.1*a)
+rParker = np.concatenate([rParkerInner, rParkerOuter])
+mParkerNum = np.concatenate([mParkerInnerNum, mParkerOuterNum])
+mParkerAn = np.concatenate([mach(rParkerInner, 0), mach(rParkerOuter, -1)])
+# (inflow) Bondi
+rBondiOuter = np.linspace(3.0, 1.0, 60, endpoint=False)
+mBondiOuterNum = solve_branch(rBondiOuter, 0.1*a)
+rBondiInner = np.linspace(1.0, 0.05, 60)
+mBondiInnerNum = solve_branch(rBondiInner[1:], 2.0*a)
+rBondi = np.concatenate([rBondiOuter, rBondiInner[1:]])
+mBondiNum = np.concatenate([mBondiOuterNum, mBondiInnerNum])
+mBondiAn = np.concatenate([mach(rBondiOuter, 0), mach(rBondiInner[1:], -1)])
+
+# integral de espacio de fase
+def F(M, r):
+    return M * np.exp(-0.5 * M**2) * (r**2) * np.exp(2.0 / r)
+
+r_grid = np.linspace(0.05, 3.0, 500)
+q_grid = np.linspace(0.0, 4.0, 500)
+R, Q = np.meshgrid(r_grid, q_grid)
+Z = F(np.sqrt(Q), R)
+Fcrit = F(1.0, r_s)
+
+levels = np.array([0.05, 0.2, 0.4, 0.7, 1.3, 2.5, 4.0]) * Fcrit
+
+plt.figure(figsize=(6, 6))
+plt.contour(R / r_s, Q, Z, levels=levels, colors='gray', linewidths=0.7)
+plt.contour(R / r_s, Q, Z, levels=[Fcrit], colors='blue', linewidths=2, linestyles='-')
+plt.plot(rParker / r_s, mParkerAn**2, 'k', linewidth=1.8, label='analytic solutions')
+plt.plot(rBondi / r_s, mBondiAn**2, 'k', linewidth=1.8)
+plt.scatter(rParker / r_s, mParkerNum**2, color='red', s=12, label='numeric roots')
+plt.scatter(rBondi / r_s, mBondiNum**2, color='red', s=12)
+
+plt.xlabel(r'$r/r_s$')
+plt.ylabel(r'$\mathcal{M}^2$')
+plt.title('Isothermal phase diagram')
+plt.xlim(0, 3)
+plt.ylim(0, 4)
+plt.gca().xaxis.set_major_formatter(ScalarFormatter())
+plt.legend(loc='upper left', frameon=False)
+plt.grid(alpha=0.2)
+plt.tight_layout()
+plt.show()

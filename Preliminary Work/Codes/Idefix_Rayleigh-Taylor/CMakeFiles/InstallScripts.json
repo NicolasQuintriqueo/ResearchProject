@@ -1,0 +1,36 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/core/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/core/src/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/containers/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/containers/src/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/algorithms/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/algorithms/src/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/simd/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/simd/src/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/example/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/kokkos/benchmarks/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/boundary/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/braginskii/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/constrainedTransport/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/eos/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/RiemannSolver/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/RiemannSolver/MHDsolvers/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/RiemannSolver/HDsolvers/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/RiemannSolver/Dustsolvers/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/fluid/tracer/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/dataBlock/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/dataBlock/planetarySystem/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/output/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/rkl/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/gravity/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/utils/cmake_install.cmake",
+		"/Users/nquin/Desktop/idefix/test/HD/try3Julio/build/utils/iterativesolver/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
